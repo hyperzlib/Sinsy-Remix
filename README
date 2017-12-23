@@ -1,6 +1,6 @@
 ===============================================================================
-       The HMM-Based Singing Voice Synthesis System "Sinsy" version 0.92
-                           release December 25, 2015
+       The HMM-Based Singing Voice Synthesis System "Sinsy" version 0.95
+                           release December 23, 2017
 
 
 The Sinsy is an HMM-Based Singing Voice Synthesis System. It has been being
@@ -108,4 +108,13 @@ Singing Voice Synthesis System. Current members are
 and the members are dynamically changing. The current formal contact address of
 Sinsy working group and a mailing list for Sinsy users can be found at
 http://sinsy.sourceforge.net/
+
+*******************************************************************************
+                                  Remix
+*******************************************************************************
+
+Remix by HyperDeep(hyperzlib)
+Add Chinese support
+in future this project can also use on windows
+
 ===============================================================================
