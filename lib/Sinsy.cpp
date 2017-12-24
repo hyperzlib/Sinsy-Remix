@@ -359,6 +359,21 @@ void SynthCondition::unsetPlayFlag()
 }
 
 /*!
+ set output label
+ */
+void SynthCondition::setOutputLabel()
+{
+   this->impl->setOutputLabel();
+}
+
+/*!
+ unset output label
+ */
+void SynthCondition::unsetOutputLabel()
+{
+   this->impl->unsetOutputLabel();
+}
+/*!
  set save file path
  */
 void SynthCondition::setSaveFilePath(const std::string& filePath)
@@ -488,7 +503,6 @@ public:
       LabelStrings label;
 
       labelMaker.outputLabel(label, false, 1, 2);
-
       return engine.synthesize(label, condition);
    }
 
@@ -553,6 +567,7 @@ private:
 
    //! hts_engine API
    HtsEngine engine;
+
 };
 
 /*!

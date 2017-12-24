@@ -62,6 +62,12 @@ public:
    //! unset play flag
    void unsetPlayFlag();
 
+   //! set output label
+   void setOutputLabel();
+
+   //! unset outputLabel
+   void unsetOutputLabel();
+
    //! set file path to save RIFF format file
    void setSaveFilePath(const std::string& filePath);
 
@@ -84,6 +90,9 @@ private:
 
    //! play flag
    bool playFlag;
+
+   //! output label
+   bool outputLabel = false;
 
    // ! file path to save wave data
    std::string saveFilePath;

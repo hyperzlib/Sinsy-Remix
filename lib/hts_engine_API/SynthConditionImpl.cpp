@@ -78,6 +78,22 @@ void SynthConditionImpl::unsetPlayFlag()
 }
 
 /*!
+ set output label
+ */
+void SynthConditionImpl::setOutputLabel()
+{
+   this->outputLabel = true;
+}
+
+/*!
+ unset output label
+ */
+void SynthConditionImpl::unsetOutputLabel()
+{
+   this->outputLabel = false;
+}
+
+/*!
  set file path to save RIFF format file
  */
 void SynthConditionImpl::setSaveFilePath(const std::string& filePath)

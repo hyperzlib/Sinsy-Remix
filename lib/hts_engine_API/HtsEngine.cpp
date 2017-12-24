@@ -155,6 +155,7 @@ bool HtsEngine::synthesize(const LabelStrings& label, SynthConditionImpl& condit
    bool playFlag = condition.playFlag;
    bool saveFlag = !condition.saveFilePath.empty();
    bool storeFlag = (NULL != condition.waveformBuffer);
+   bool outputLabel = condition.outputLabel;
 
    // nothing to do
    if (!playFlag && !saveFlag && !storeFlag) {
@@ -162,6 +163,21 @@ bool HtsEngine::synthesize(const LabelStrings& label, SynthConditionImpl& condit
    }
 
    FILE* fp(NULL);
+   if (outputLabel) {
+      fp = fopen(condition.saveFilePath.c_str(), "wb");
+      if (NULL == fp) {
+         return false;
+      }
+      char** lines = (char**) label.getData();
+      std::string lab;
+      for (int i = 0; i < label.size(); i++) {
+          lab += lines[i];
+          lab += "\n";
+      }
+      fwrite(lab.c_str(), sizeof(std::string), lab.size(), fp);
+      fclose(fp);
+      return true;
+   }
    if (saveFlag) {
       fp = fopen(condition.saveFilePath.c_str(), "wb");
       if (NULL == fp) {
