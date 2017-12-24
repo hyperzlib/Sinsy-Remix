@@ -144,6 +144,12 @@ public:
    //! unset play flag
    void unsetPlayFlag();
 
+   //! set output label
+   void setOutputLabel();
+
+   //! unset output label
+   void unsetOutputLabel();
+
    //! set file path to save RIFF format file
    void setSaveFilePath(const std::string& filePath);
 

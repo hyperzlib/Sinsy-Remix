@@ -72,9 +72,10 @@ void usage()
    std::cout << "    -w langs    : languages                          [  j]" << std::endl;
    std::cout << "                  j: Japanese                             " << std::endl;
    std::cout << "                  c: Chinese                             " << std::endl;
-   std::cout << "    -x dir      : dictionary directory               [N/A]" << std::endl;
+   std::cout << "    -x dir      : dictionary directory               [/usr/local/dic]" << std::endl;
    std::cout << "    -m htsvoice : HTS voice file                     [N/A]" << std::endl;
    std::cout << "    -o file     : filename of output wav audio       [N/A]" << std::endl;
+   std::cout << "    -l           : output label" << std::endl;
    std::cout << "  infile:" << std::endl;
    std::cout << "    MusicXML file" << std::endl;
 }
@@ -88,9 +89,10 @@ int main(int argc, char **argv)
 
    std::string xml;
    std::string voice;
-   std::string config;
+   std::string config("/usr/local/dic");
    std::string wav;
    std::string languages(DEFAULT_LANGS);
+   bool outputLabel = false;
 
    int i(1);
    for(; i < argc; ++i) {
@@ -119,6 +121,9 @@ int main(int argc, char **argv)
          case 'h' :
             usage();
             return 0;
+         case 'l' :
+            outputLabel = true;
+            break;
          default :
             std::cout << "[ERROR] invalid option : '-" << argv[i][1] << "'" << std::endl;
             usage();
@@ -159,6 +164,11 @@ int main(int argc, char **argv)
    } else {
       condition.setSaveFilePath(wav);
    }
+   if(outputLabel) {
+      condition.setOutputLabel();
+   } else {
+      condition.unsetOutputLabel();
+  }
 
    sinsy.synthesize(condition);
 
