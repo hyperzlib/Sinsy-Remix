@@ -191,7 +191,7 @@ bool ConfManager::setLanguages(const std::string& languages, const std::string& 
          const std::string TABLE_GBK(dirPath + "/chinese.gbk.table");
          const std::string CONF_GBK(dirPath + "/chinese.gbk.conf");
          const std::string TABLE_BIG_5(dirPath + "/chinese.big_5.table");
-         const std::string CONF_BIG_5(dirPath + "/chinese.biig_5.conf");
+         const std::string CONF_BIG_5(dirPath + "/chinese.big_5.conf");
          const std::string MACRON_TABLE(dirPath + "/chinese.macron");
 
          uCConf = new CConf(UTF_8_STRS);

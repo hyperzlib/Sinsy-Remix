@@ -41,7 +41,9 @@
 
 #ifndef SINSY_UTIL_TYPES_H_
 #define SINSY_UTIL_TYPES_H_
-
+#ifdef _WIN32
+#include "basetyps.h"
+#endif
 namespace sinsy
 {
 
