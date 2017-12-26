@@ -61,7 +61,6 @@ void usage()
    std::cout << "Version 1.10 (http://hts-engine.sourceforge.net/)" << std::endl;
    std::cout << "Copyright (C) 2001-2015 Nagoya Institute of Technology" << std::endl;
    std::cout << "              2001-2008 Tokyo Institute of Technology" << std::endl;
-   std::cout << "              2017-2018 HyperDeep" << std::endl;
    std::cout << "All rights reserved." << std::endl;
    std::cout << "" << std::endl;
    std::cout << "sinsy - The HMM-based singing voice synthesis system \"Sinsy\"" << std::endl;
@@ -75,7 +74,7 @@ void usage()
    std::cout << "    -x dir      : dictionary directory               [/usr/local/dic]" << std::endl;
    std::cout << "    -m htsvoice : HTS voice file                     [N/A]" << std::endl;
    std::cout << "    -o file     : filename of output wav audio       [N/A]" << std::endl;
-   std::cout << "    -l           : output label" << std::endl;
+   std::cout << "    -l          : output label" << std::endl;
    std::cout << "  infile:" << std::endl;
    std::cout << "    MusicXML file" << std::endl;
 }
