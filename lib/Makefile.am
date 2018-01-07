@@ -2,6 +2,7 @@ AM_CPPFLAGS = -I @top_srcdir@/include \
               -I converter \
               -I hts_engine_API \
               -I japanese \
+              -I chinese \
               -I label \
               -I score \
               -I temporary \
