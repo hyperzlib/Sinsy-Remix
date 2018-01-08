@@ -1,3 +1,6 @@
+Version 0.95:
+* add chinese language support
+
 Version 0.92:
 * change breath_mark tag to up_bow tag when score is saved.
 * ignore vowel reduction flag before macron.
