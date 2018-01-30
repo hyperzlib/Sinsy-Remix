@@ -134,7 +134,7 @@ converter/ConfManager.o: converter/ConfManager.cpp \
  c:\mingw\lib\gcc\mingw32\6.3.0\include\c++\sstream \
  c:\mingw\lib\gcc\mingw32\6.3.0\include\c++\bits\sstream.tcc \
  util/MacronTable.h util/MultibyteCharRange.h util/Configurations.h \
- util/PhonemeTable.h util/MacronTable.h japanese/CConf.h
+ util/PhonemeTable.h util/MacronTable.h chinese/CConf.h
 
 c:\mingw\lib\gcc\mingw32\6.3.0\include\c++\stdexcept:
 
@@ -456,4 +456,4 @@ util/PhonemeTable.h:
 
 util/MacronTable.h:
 
-japanese/CConf.h:
+chinese/CConf.h:

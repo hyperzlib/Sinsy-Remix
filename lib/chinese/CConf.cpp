@@ -65,7 +65,7 @@ const std::string PHONEME_CL = "PHONEME_CL";
 const std::string VOWELS = "VOWELS";
 const std::string MULTIBYTE_CHAR_RANGE = "MULTIBYTE_CHAR_RANGE";
 const size_t INVALID_IDX = std::numeric_limits<size_t>::max();
-const std::string DEFAULT_VOWELS = "a,o,7,e,i,u,v,er,ai,ei,ao,ou,ia,ie,ua,uo,ve,iao,iou,uai,uei,an,en,in,vu,ian,uan,uen,van,ang,eng,ing,ong,iang,iong,uang,ueng";
+const std::string DEFAULT_VOWELS = "a,i,v,u,o,e,en,ai,an,ia,ua,er,ii,uo,un,ui,iii,ue,in,ou,ei,ao,iu,ie,van,ian,iao,ang,ing,uan,eng,ong,uai,uang,iang,iong";
 const std::string PHONEME_SEPARATOR = ",";
 
 class PhonemeJudge
@@ -178,7 +178,7 @@ public:
       }
 
       if (vowelReductionFlag) {
-         if (1 == p.size()) { // vowels, N or cl
+         if (1 == p.size()) { // vowels, cl
             WARN_MSG("Vowel reduction symbol was ignored : only one  phoneme \"" << p[0] << "\"");
          } else {
             waiting = true;
