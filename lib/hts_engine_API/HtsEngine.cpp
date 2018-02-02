@@ -196,6 +196,7 @@ bool HtsEngine::synthesize(const LabelStrings& label, SynthConditionImpl& condit
    if(HTS_Engine_synthesize_from_strings(&engine, (char**) label.getData(), label.size()) != TRUE) {
       error = 1;
    }
+   std::cout << "synthesized！" << std::endl;
 
    if (saveFlag) {
       if(0 == error)
