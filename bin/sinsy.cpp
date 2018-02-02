@@ -52,9 +52,10 @@ const char* DEFAULT_LANGS = "j";
 
 void usage()
 {
-   std::cout << "The HMM-Based Singing Voice Syntheis System Remix \"Sinsy-r\"" << std::endl;
+   std::cout << "The HMM-Based Singing Voice Syntheis System Remix \"Sinsy-R\"" << std::endl;
    std::cout << "Version 0.95 (http://sinsy.sourceforge.net/)" << std::endl;
-   std::cout << "Copyright (C) 2009-2018 Nagoya Institute of Technology" << std::endl;
+   std::cout << "Copyright (C) 2017-2018 HyperDeep (a.k.a hyperzlib / Quantum)" << std::endl;
+   std::cout << "              2009-2017 Nagoya Institute of Technology" << std::endl;
    std::cout << "All rights reserved." << std::endl;
    std::cout << "" << std::endl;
    std::cout << "The HMM-Based Speech Synthesis Engine \"hts_engine API\"" << std::endl;
@@ -62,8 +63,6 @@ void usage()
    std::cout << "Copyright (C) 2001-2015 Nagoya Institute of Technology" << std::endl;
    std::cout << "              2001-2008 Tokyo Institute of Technology" << std::endl;
    std::cout << "All rights reserved." << std::endl;
-   std::cout << "" << std::endl;
-   std::cout << "sinsy - The HMM-based singing voice synthesis system \"Sinsy\"" << std::endl;
    std::cout << "" << std::endl;
    std::cout << "  usage:" << std::endl;
    std::cout << "    sinsy [ options ] [ infile ]" << std::endl;
