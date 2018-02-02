@@ -40,6 +40,7 @@
 /* ----------------------------------------------------------------- */
 
 #include <fstream>
+#include <math.h>
 #include "sinsy.h"
 #include "util_log.h"
 #include "Converter.h"
@@ -419,6 +420,27 @@ public:
    bool setLanguages(const std::string& languages, const std::string& dirPath) {
       return converter.setLanguages(languages, dirPath);
    }
+   
+   //! set outputLabel
+   bool outputLabel(bool state) {
+	  if(state == true){
+		  timeFlag = 0;
+	  } else {
+		  timeFlag = 2;
+	  }
+      return true;
+   }
+   
+   //! set mono label
+   bool setMonoLabel(bool state) {
+	  monophoneFlag = state;
+      return true;
+   }
+   
+   //! set start time
+   bool setStartTime(const std::string& startTime) {
+	   labelStartTime = atof(startTime.c_str());
+   }
 
    //! load voice files
    bool loadVoices(const std::vector<std::string>& voices) {
@@ -502,7 +524,7 @@ public:
       labelMaker.fix();
       LabelStrings label;
 
-      labelMaker.outputLabel(label, false, 1, 2);
+      labelMaker.outputLabel(label, monophoneFlag, 1, timeFlag, labelStartTime);
       return engine.synthesize(label, condition);
    }
 
@@ -567,6 +589,15 @@ private:
 
    //! hts_engine API
    HtsEngine engine;
+   
+   //! monophoneFlag
+   bool monophoneFlag = false;
+   
+   //! timeFlag
+   int timeFlag = 2;
+   
+   //! labelStartTime
+   double labelStartTime = 0.0;
 
 };
 
@@ -618,6 +649,36 @@ bool Sinsy::loadVoices(const std::vector<std::string>& voices)
       }
    } catch (const std::exception& ex) {
       ERR_MSG("Exception in API " << FUNC_NAME("") << " : " << ex.what());
+      return false;
+   }
+   return true;
+}
+
+/*!
+ set output label
+ */
+bool Sinsy::outputLabel(bool state)
+{
+   return impl->outputLabel(state);
+}
+
+/*!
+ set output label
+ */
+bool Sinsy::outputMonoLabel(bool state)
+{
+   return impl->setMonoLabel(state);
+}
+
+/*!
+ set start time
+ */
+bool Sinsy::setStartTime(const std::string& startTime)
+{
+   try {
+      impl->setStartTime(startTime);
+   } catch (const std::exception& ex) {
+      ERR_MSG("Exception in API " << FUNC_NAME(startTime) << " : " << ex.what());
       return false;
    }
    return true;

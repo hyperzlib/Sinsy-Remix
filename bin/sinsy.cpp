@@ -69,11 +69,16 @@ void usage()
    std::cout << "  options:                                           [def]" << std::endl;
    std::cout << "    -w langs    : languages                          [  j]" << std::endl;
    std::cout << "                  j: Japanese                             " << std::endl;
-   std::cout << "                  c: Chinese                             " << std::endl;
+   std::cout << "                  c: Chinese                              " << std::endl;
    std::cout << "    -x dir      : dictionary directory               [/usr/local/dic]" << std::endl;
    std::cout << "    -m htsvoice : HTS voice file                     [N/A]" << std::endl;
    std::cout << "    -o file     : filename of output wav audio       [N/A]" << std::endl;
-   std::cout << "    -l          : output label" << std::endl;
+   std::cout << "    -s time     : play start time                    [0.0]" << std::endl;
+   std::cout << "    -l mode     : output label                       [  d]" << std::endl;
+   std::cout << "                  d: Disable                              " << std::endl;
+   std::cout << "                  n: Normal                               " << std::endl;
+   std::cout << "                  t: Label with time                      " << std::endl;
+   std::cout << "                  m: Mono label                           " << std::endl;
    std::cout << "  infile:" << std::endl;
    std::cout << "    MusicXML file" << std::endl;
 }
@@ -89,8 +94,9 @@ int main(int argc, char **argv)
    std::string voice;
    std::string config("/usr/local/dic");
    std::string wav;
+   std::string startTime;
    std::string languages(DEFAULT_LANGS);
-   bool outputLabel = false;
+   int outputLabel = 0;
 
    int i(1);
    for(; i < argc; ++i) {
@@ -116,11 +122,30 @@ int main(int argc, char **argv)
          case 'o' :
             wav = argv[++i];
             break;
+		 case 's' :
+			startTime = argv[++i];
+			break;
          case 'h' :
             usage();
             return 0;
          case 'l' :
-            outputLabel = true;
+			switch(argv[++i][0]){
+				case 'd':
+					outputLabel = 0;
+					break;
+				case 'n':
+					outputLabel = 1;
+					break;
+				case 't':
+					outputLabel = 2;
+					break;
+				case 'm':
+					outputLabel = 3;
+					break;
+				default:
+					outputLabel = 0;
+					break;
+			}
             break;
          default :
             std::cout << "[ERROR] invalid option : '-" << argv[i][1] << "'" << std::endl;
@@ -162,11 +187,23 @@ int main(int argc, char **argv)
    } else {
       condition.setSaveFilePath(wav);
    }
-   if(outputLabel) {
+   
+   if (outputLabel > 0) {
       condition.setOutputLabel();
+	  if(outputLabel == 2){
+		sinsy.outputLabel(true);
+	  }
+	  if(outputLabel == 3){
+		sinsy.outputMonoLabel(true);
+	  }
    } else {
       condition.unsetOutputLabel();
-  }
+	  sinsy.outputLabel(false);
+   }
+   
+   if (!startTime.empty()){
+	   sinsy.setStartTime(startTime);
+   }
 
    sinsy.synthesize(condition);
 

@@ -44,7 +44,10 @@
 #include <vector>
 #include <limits>
 #include <stdlib.h>
+#include <stdio.h>
 #include <limits.h>
+#include <iostream> 
+#include <fstream> 
 #include "HtsEngine.h"
 #include "LabelStrings.h"
 #include "SynthConditionImpl.h"
@@ -164,8 +167,8 @@ bool HtsEngine::synthesize(const LabelStrings& label, SynthConditionImpl& condit
 
    FILE* fp(NULL);
    if (outputLabel) {
-      fp = fopen(condition.saveFilePath.c_str(), "wb");
-      if (NULL == fp) {
+      std::ofstream ofp(condition.saveFilePath.c_str());
+      if (!ofp.is_open()) {
          return false;
       }
       char** lines = (char**) label.getData();
@@ -174,8 +177,8 @@ bool HtsEngine::synthesize(const LabelStrings& label, SynthConditionImpl& condit
           lab += lines[i];
           lab += "\n";
       }
-      fwrite(lab.c_str(), sizeof(std::string), lab.size(), fp);
-      fclose(fp);
+      ofp << lab;
+      ofp.close();
       return true;
    }
    if (saveFlag) {
@@ -207,8 +210,9 @@ bool HtsEngine::synthesize(const LabelStrings& label, SynthConditionImpl& condit
       if(condition.waveformBuffer) {
          size_t numSamples = HTS_Engine_get_nsamples(&engine);
          condition.waveformBuffer->resize(numSamples);
-         for (size_t i = 0; i < numSamples; ++i)
+         for (size_t i = 0; i < numSamples; ++i){
             (*condition.waveformBuffer)[i] = HTS_Engine_get_generated_speech(&engine, i);
+		 }
       }
    }
 

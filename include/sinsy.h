@@ -190,6 +190,15 @@ public:
 
    //! load voice files
    bool loadVoices(const std::vector<std::string>& voices);
+   
+   //! set output label
+   bool outputLabel(bool state);
+   
+   //! set output mono label
+   bool outputMonoLabel(bool state);
+   
+   //! set start time
+   bool setStartTime(const std::string& startTime);
 
    //! set encoding
    virtual bool setEncoding(const std::string& encoding);

@@ -106,7 +106,7 @@ public:
    void fix();
 
    //! output label
-   void outputLabel(ILabelOutput& output, bool monophoneFlag = false, int overwriteEnableFlag = 0, int timeFlag = 0) const;
+   void outputLabel(ILabelOutput& output, bool monophoneFlag = false, int overwriteEnableFlag = 0, int timeFlag = 0, double startTime = 0.0) const;
 
 private:
    //! copy constructor (donot use)
