@@ -150,6 +150,8 @@ HTS_Boolean HTS_GStreamSet_create(HTS_GStreamSet * gss, HTS_PStreamSet * pss, si
          lpf = &gss->gstream[2].par[i][0];
       HTS_Vocoder_synthesize(&v, gss->gstream[0].vector_length - 1, gss->gstream[1].par[i][0], &gss->gstream[0].par[i][0], nlpf, lpf, alpha, beta, volume, &gss->gspeech[j], audio);
    }
+   if (showProgress)
+      printf("synthesizeing... 100%%\n");
    HTS_Vocoder_clear(&v);
    if (audio)
       HTS_Audio_flush(audio);
