@@ -150,15 +150,15 @@ bool HtsEngine::load(const std::vector<std::string>& voices)
 */
 bool HtsEngine::synthesize(const LabelStrings& label, SynthConditionImpl& condition)
 {
+   bool outputLabel = condition.outputLabel;
    // check
-   if (HTS_Engine_get_nvoices(&engine) == 0 || label.size() == 0) {
+   if ((!outputLabel && HTS_Engine_get_nvoices(&engine) == 0) || label.size() == 0) {
       return false;
    }
 
    bool playFlag = condition.playFlag;
    bool saveFlag = !condition.saveFilePath.empty();
    bool storeFlag = (NULL != condition.waveformBuffer);
-   bool outputLabel = condition.outputLabel;
 
    // nothing to do
    if (!playFlag && !saveFlag && !storeFlag) {
@@ -167,7 +167,8 @@ bool HtsEngine::synthesize(const LabelStrings& label, SynthConditionImpl& condit
 
    FILE* fp(NULL);
    if (outputLabel) {
-      std::ofstream ofp(condition.saveFilePath.c_str());
+      std::ofstream ofp;
+	  ofp.open(condition.saveFilePath.c_str(), std::ios::out|std::ios::trunc|std::ios::binary);
       if (!ofp.is_open()) {
          return false;
       }

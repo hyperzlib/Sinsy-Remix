@@ -72,7 +72,7 @@ void usage()
    std::cout << "                  c: Chinese                              " << std::endl;
    std::cout << "    -x dir      : dictionary directory               [/usr/local/dic]" << std::endl;
    std::cout << "    -m htsvoice : HTS voice file                     [N/A]" << std::endl;
-   std::cout << "    -o file     : filename of output wav audio       [N/A]" << std::endl;
+   std::cout << "    -o file     : filename of output                 [N/A]" << std::endl;
    std::cout << "    -s time     : play start time                    [0.0]" << std::endl;
    std::cout << "    -l mode     : output label                       [  d]" << std::endl;
    std::cout << "                  d: Disable                              " << std::endl;
@@ -96,7 +96,7 @@ int main(int argc, char **argv)
    std::string wav;
    std::string startTime;
    std::string languages(DEFAULT_LANGS);
-   int outputLabel = 0;
+   int outputLabel(0);
 
    int i(1);
    for(; i < argc; ++i) {
@@ -134,10 +134,10 @@ int main(int argc, char **argv)
 					outputLabel = 0;
 					break;
 				case 'n':
-					outputLabel = 1;
+					outputLabel = 2;
 					break;
 				case 't':
-					outputLabel = 2;
+					outputLabel = 1;
 					break;
 				case 'm':
 					outputLabel = 3;
@@ -155,7 +155,7 @@ int main(int argc, char **argv)
       }
    }
 
-   if(xml.empty() || voice.empty()) {
+   if(xml.empty() || (outputLabel == 0 && voice.empty())) {
       usage();
       return -1;
    }
@@ -163,14 +163,16 @@ int main(int argc, char **argv)
    sinsy::Sinsy sinsy;
 
    std::vector<std::string> voices;
-   voices.push_back(voice);
+   if(outputLabel == 0){
+      voices.push_back(voice);
+   }
 
    if (!sinsy.setLanguages(languages, config)) {
       std::cout << "[ERROR] failed to set languages : " << languages << ", config dir : " << config << std::endl;
       return -1;
    }
 
-   if (!sinsy.loadVoices(voices)) {
+   if (outputLabel == 0 && !sinsy.loadVoices(voices)) {
       std::cout << "[ERROR] failed to load voices : " << voice << std::endl;
       return -1;
    }
