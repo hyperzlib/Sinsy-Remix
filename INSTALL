@@ -6,8 +6,8 @@ Installation Instructions
 2. Run configure script with appropriate options.
 
    % ./configure \
-     --with-hts-engine-header-path=/usr/local/hts_engine_API/include \
-     --with-hts-engine-library-path=/usr/local/hts_engine_API/lib
+     --with-hts-engine-header-path=~/HyperVoice/hts_engine/include \
+     --with-hts-engine-library-path=~/HyperVoice/hts_engine/lib
 
    For detail, please see.
 

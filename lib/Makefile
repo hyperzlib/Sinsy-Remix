@@ -144,10 +144,10 @@ ECHO_T =
 EGREP = /bin/grep -E
 EXEEXT = .exe
 GREP = /bin/grep
-HTS_ENGINE_HEADER = /usr/local/include/HTS_engine.h
-HTS_ENGINE_HEADER_DIR = /usr/local/include
-HTS_ENGINE_LIBRARY = /usr/local/lib/libHTSEngine.a
-HTS_ENGINE_LIBRARY_DIR = /usr/local/lib
+HTS_ENGINE_HEADER = hts_engine_API/include/HTS_engine.h
+HTS_ENGINE_HEADER_DIR = hts_engine_API/include
+HTS_ENGINE_LIBRARY = ./libHTSEngine.a
+HTS_ENGINE_LIBRARY_DIR = .
 INSTALL = /bin/install -c
 INSTALL_DATA = ${INSTALL} -m 644
 INSTALL_PROGRAM = ${INSTALL}
@@ -234,7 +234,7 @@ AM_CPPFLAGS = -I ../include \
               -I temporary \
               -I util \
               -I xml \
-              -I /usr/local/include
+              -I hts_engine_API/include
 
 lib_LIBRARIES = libSinsy.a
 libSinsy_a_SOURCES = Sinsy.cpp \

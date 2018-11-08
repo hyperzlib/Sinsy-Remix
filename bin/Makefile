@@ -72,12 +72,12 @@ AUTOMAKE = ${SHELL} /c/Users/Administrator/Documents/GitHub/Sinsy-Remix/config/m
 AWK = gawk
 CC = gcc
 CCDEPMODE = depmode=gcc3
-CFLAGS = -g -O2
+CFLAGS = -g -O2 -static
 CPP = gcc -E
 CPPFLAGS = 
 CXX = g++
 CXXDEPMODE = depmode=gcc3
-CXXFLAGS = -g -O2
+CXXFLAGS = $(CFLAGS)
 CYGPATH_W = echo
 DEFS = -DPACKAGE_NAME=\"sinsy\" -DPACKAGE_TARNAME=\"sinsy\" -DPACKAGE_VERSION=\"0.95\" -DPACKAGE_STRING=\"sinsy\ 0.95\" -DPACKAGE_BUGREPORT=\"http://sinsy.sourceforge.net/\" -DPACKAGE_URL=\"\" -DPACKAGE=\"sinsy\" -DVERSION=\"0.95\" -DHAVE_LIBM=1 -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DSIZEOF_CHAR=1 -DSIZEOF_UNSIGNED_CHAR=1 -DSIZEOF_SHORT=2 -DSIZEOF_UNSIGNED_SHORT=2 -DSIZEOF_INT=4 -DSIZEOF_UNSIGNED_INT=4 -DSIZEOF_LONG=4 -DSIZEOF_UNSIGNED_LONG=4 -DSIZEOF_LONG_LONG=8 -DSIZEOF_UNSIGNED_LONG_LONG=8 -DHAVE_VPRINTF=1 -DHAVE_SQRT=1 -DHAVE_STRCHR=1 -DHAVE_STRRCHR=1 -DHAVE_STRSTR=1 -DHAVE_LIBWINMM=1
 DEPDIR = .deps
@@ -87,10 +87,10 @@ ECHO_T =
 EGREP = /bin/grep -E
 EXEEXT = .exe
 GREP = /bin/grep
-HTS_ENGINE_HEADER = /usr/local/include/HTS_engine.h
-HTS_ENGINE_HEADER_DIR = /usr/local/include
-HTS_ENGINE_LIBRARY = /usr/local/lib/libHTSEngine.a
-HTS_ENGINE_LIBRARY_DIR = /usr/local/lib
+HTS_ENGINE_HEADER = hts_engine_API/include/HTS_engine.h
+HTS_ENGINE_HEADER_DIR = hts_engine_API/include
+HTS_ENGINE_LIBRARY = ../libHTSEngine.a
+HTS_ENGINE_LIBRARY_DIR = .
 INSTALL = /bin/install -c
 INSTALL_DATA = ${INSTALL} -m 644
 INSTALL_PROGRAM = ${INSTALL}
@@ -167,10 +167,10 @@ target_alias =
 top_build_prefix = ../
 top_builddir = ..
 top_srcdir = ..
-AM_CPPFLAGS = -I ../include
+AM_CPPFLAGS = -I ../include -static
 sinsy_SOURCES = sinsy.cpp
 sinsy_LDADD = ../lib/libSinsy.a \
-              /usr/local/lib/libHTSEngine.a
+              ../libHTSEngine.a
 
 DISTCLEANFILES = *.log *.out *~
 MAINTAINERCLEANFILES = Makefile.in 

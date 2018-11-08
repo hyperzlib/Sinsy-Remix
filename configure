@@ -5858,6 +5858,7 @@ else
   hts_engine_library_path='hts_engine_API/lib'
 fi
 
+echo "${hts_engine_library_path}/libHTSEngine.a"
 if test ! -f "${hts_engine_library_path}/libHTSEngine.a"; then
    as_fn_error $? "Cannot find libHTSEngine.a" "$LINENO" 5
 fi

@@ -1389,54 +1389,109 @@ void LabelMaker::outputLabel(ILabelOutput& output, bool monophoneFlag, int overw
 
 	double time(0.0);
 	double tempTime(0.0);
-
+	int i;
+    LabelData *prevLabelData;
+    NoteList::const_iterator prevNItr;
+    NoteLabeler::List::const_iterator prevSItr;
+    SyllableLabeler::List::const_iterator prevPItr;
+    bool hasPrev = false;
 	// Note
-	const NoteList::const_iterator nItrBegin(noteList.begin());
-	const NoteList::const_iterator nItrEnd(noteList.end());
-	for (NoteList::const_iterator nItr(nItrBegin) ; nItrEnd != nItr; ++nItr) {
+	NoteList::const_iterator nItrBegin(noteList.begin());
+	NoteList::const_iterator nItrEnd(noteList.end());
+	for (NoteList::const_iterator nItr(nItrBegin); nItrEnd != nItr; ++ nItr) {
 
 		double beginTime(0.0);
 		
 		// Syllable
-		const NoteLabeler::List::const_iterator sItrBegin((*nItr)->childBegin());
-		const NoteLabeler::List::const_iterator sItrEnd((*nItr)->childEnd());
-		for (NoteLabeler::List::const_iterator sItr(sItrBegin) ; sItrEnd != sItr; ++sItr) {
-
+		NoteLabeler::List::const_iterator sItrBegin((*nItr)->childBegin());
+		NoteLabeler::List::const_iterator sItrEnd((*nItr)->childEnd());
+		NoteLabeler::List::const_iterator sItr(sItrBegin);
+		for (; sItrEnd != sItr; ++ sItr) {
 			// Phoneme
-			const SyllableLabeler::List::const_iterator pItrBegin((*sItr)->childBegin());
-			const SyllableLabeler::List::const_iterator pItrEnd((*sItr)->childEnd());
-			for (SyllableLabeler::List::const_iterator pItr(pItrBegin); pItrEnd != pItr; ++pItr) {
+			SyllableLabeler::List::const_iterator pItrBegin((*sItr)->childBegin());
+			SyllableLabeler::List::const_iterator pItrEnd((*sItr)->childEnd());
+			i = 0;
+			SyllableLabeler::List::const_iterator pItr(pItrBegin);
+			for (; pItrEnd != pItr; ++ pItr) {
 				double noteTime = (*nItr)->getLength().getTime();
 				if(tempTime >= startTime){
-					LabelData labelData;
-					labelData.setMonophoneFlag(monophoneFlag);
+					LabelData *labelData = new LabelData();
+					labelData->setMonophoneFlag(monophoneFlag);
 
 					if (0 != timeFlag) {
-						labelData.setOutputTimeFlag(true);
+						labelData->setOutputTimeFlag(true);
 						// begin time
-						if ((sItrBegin == sItr) && (pItrBegin == pItr)) {
+						/** 修复时间设置
+						 * 下一个音是正常音：
+						 *  辅音：-1 开始
+						 *  元音：开始 -1
+						 * 下一个音是单音：
+						 *  辅音：-1 开始
+						 *  元音：开始 结尾
+						 */
+						//开始进行时间修正
+						if ((sItrBegin == sItr) && (pItrBegin == pItr) && (sItrEnd == sItr + 1) && (pItrEnd == pItr + 1)){
+						    //单音的情况（单元音）
+							//对上一个音进行结尾
+						    if(hasPrev){
+							    prevLabelData->setEndTime(time);
+							}
+							//std::cout << "single" << std::endl;
+						    labelData->setBeginTime(time);
+						    beginTime = time;
+							time += noteTime;
+						} else {
+						    //多音的情况（正常音）
+    						if (1 == timeFlag) {
+    							labelData->setBeginTime(beginTime);
+    						}
+    						
+    						if ((sItrBegin == sItr) && (pItrBegin == pItr)){
+    						    //辅音
+								//std::cout << "consonant" << std::endl;
+    							labelData->setEndTime(time);
+    						} else if (1 == timeFlag) {
+    							labelData->setEndTime(beginTime);
+    						}
+    						
+    						if ((sItrBegin == prevSItr) && (pItrBegin == prevPItr)) {
+    						    //元音
+								//std::cout << "vowel" << std::endl;
+    							labelData->setBeginTime(time);
+    							beginTime = time;
+    							time += noteTime;
+    						} else if (1 == timeFlag) {
+    							labelData->setBeginTime(beginTime);
+    						}
+						}
+                        /*if ((sItrBegin == sItr) && (pItrBegin == pItr)) {
 							labelData.setBeginTime(time);
 							beginTime = time;
 							time += noteTime;
 						} else if (1 == timeFlag) {
 							labelData.setBeginTime(beginTime);
 						}
-
 						// end time
 						if ((sItrEnd == (sItr + 1)) && (pItrEnd == (pItr + 1))) {
 							labelData.setEndTime(time);
 						} else if (1 == timeFlag) {
 							labelData.setEndTime(time);
-						}
+						}*/
 					} else {
-						labelData.setOutputTimeFlag(false);
+						labelData->setOutputTimeFlag(false);
 					}
-
-					setLabelData(labelData, nItr, sItr, pItr, overwriteEnableFlag, timeFlag);
-
-					std::ostringstream oss;
-					oss << labelData;
-					output.output(oss.str());
+                    if(hasPrev){
+    					setLabelData(*prevLabelData, prevNItr, prevSItr, prevPItr, overwriteEnableFlag, timeFlag);
+    					std::ostringstream oss;
+    					oss << *prevLabelData;
+    					output.output(oss.str());
+						delete prevLabelData;
+                    }
+                    prevLabelData = labelData;
+                    prevNItr = nItr;
+                    prevSItr = sItr;
+                    prevPItr = pItr;
+					hasPrev = true;
 				} else {
 					if(tempTime + noteTime > startTime){
 						time = tempTime + noteTime - startTime;
@@ -1445,6 +1500,14 @@ void LabelMaker::outputLabel(ILabelOutput& output, bool monophoneFlag, int overw
 				}
 			}
 		}
+	}
+	if(hasPrev){
+		prevLabelData->setEndTime(time);
+	    setLabelData(*prevLabelData, prevNItr, prevSItr, prevPItr, overwriteEnableFlag, timeFlag);
+	    std::ostringstream oss;
+		oss << *prevLabelData;
+		output.output(oss.str());
+		delete prevLabelData;
 	}
 }
 
@@ -1577,7 +1640,7 @@ bool LabelMaker::moveToNextPhoneme(ConstNoteItr& nItr, ConstSyllableItr& sItr, C
 
  set label data
 */
-void LabelMaker::setLabelData(LabelData& label, const ConstNoteItr& noteItr, const ConstSyllableItr& syllableItr, const ConstPhonemeItr& phonemeItr, int overwriteEnableFlag, int timeFlag) const
+void LabelMaker::setLabelData(LabelData& label, ConstNoteItr& noteItr, ConstSyllableItr& syllableItr, ConstPhonemeItr& phonemeItr, int overwriteEnableFlag, int timeFlag) const
 {
 	{
 		size_t j1(syllableNum / measureList.size());

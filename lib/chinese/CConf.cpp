@@ -58,7 +58,7 @@ namespace
 {
 const std::string SIL_STR = "sil";
 const std::string SEPARATOR = ",";
-const std::string LANGUAGE_INFO = "CHN";
+const std::string LANGUAGE_INFO = "CHI";
 const std::string MACRON = "MACRON";
 const std::string VOWEL_REDUCTION = "VOWEL_REDUCTION";
 const std::string PHONEME_CL = "PHONEME_CL";
