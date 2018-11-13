@@ -10,3 +10,4 @@ matrix:
             - ubuntu-toolchain-r-test
           packages:
             - automake1.11
+            - automake1.15
