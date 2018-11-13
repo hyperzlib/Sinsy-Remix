@@ -1,2 +1,3 @@
 language: cpp
+install: aclocal-1.11
 script: "cd hts_engine_API && chmod +x configure && ./configure && make && cd .. && chmod +x configure && ./configure --with-hts-engine-header-path=$(pwd)/hts_engine_API/include --with-hts-engine-library-path=$(pwd)/hts_engine_API/lib && make"
