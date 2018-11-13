@@ -1,2 +1,2 @@
 language: cpp
-script: "./configure --with-hts-engine-header-path=$(PWD)/hts_engine_API/include --with-hts-engine-library-path=$(PWD)/hts_engine_API/lib && make"
+script: "chmod +x configure && ./configure --with-hts-engine-header-path=$(pwd)/hts_engine_API/include --with-hts-engine-library-path=$(pwd)/hts_engine_API/lib && make"
