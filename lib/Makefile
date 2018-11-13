@@ -16,10 +16,10 @@
 
 
 
-pkgdatadir = $(datadir)/sinsy
-pkgincludedir = $(includedir)/sinsy
-pkglibdir = $(libdir)/sinsy
-pkglibexecdir = $(libexecdir)/sinsy
+pkgdatadir = $(datadir)/sinsy-remix
+pkgincludedir = $(includedir)/sinsy-remix
+pkglibdir = $(libdir)/sinsy-remix
+pkglibexecdir = $(libexecdir)/sinsy-remix
 am__cd = CDPATH="$${ZSH_VERSION+.}$(PATH_SEPARATOR)" && cd
 install_sh_DATA = $(install_sh) -c -m 644
 install_sh_PROGRAM = $(install_sh) -c
@@ -136,7 +136,7 @@ CXX = g++
 CXXDEPMODE = depmode=gcc3
 CXXFLAGS = -g -O2
 CYGPATH_W = echo
-DEFS = -DPACKAGE_NAME=\"sinsy\" -DPACKAGE_TARNAME=\"sinsy\" -DPACKAGE_VERSION=\"0.95\" -DPACKAGE_STRING=\"sinsy\ 0.95\" -DPACKAGE_BUGREPORT=\"http://sinsy.sourceforge.net/\" -DPACKAGE_URL=\"\" -DPACKAGE=\"sinsy\" -DVERSION=\"0.95\" -DHAVE_LIBM=1 -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DSIZEOF_CHAR=1 -DSIZEOF_UNSIGNED_CHAR=1 -DSIZEOF_SHORT=2 -DSIZEOF_UNSIGNED_SHORT=2 -DSIZEOF_INT=4 -DSIZEOF_UNSIGNED_INT=4 -DSIZEOF_LONG=4 -DSIZEOF_UNSIGNED_LONG=4 -DSIZEOF_LONG_LONG=8 -DSIZEOF_UNSIGNED_LONG_LONG=8 -DHAVE_VPRINTF=1 -DHAVE_SQRT=1 -DHAVE_STRCHR=1 -DHAVE_STRRCHR=1 -DHAVE_STRSTR=1 -DHAVE_LIBWINMM=1
+DEFS = -DPACKAGE_NAME=\"sinsy-remix\" -DPACKAGE_TARNAME=\"sinsy-remix\" -DPACKAGE_VERSION=\"0.95.2\" -DPACKAGE_STRING=\"sinsy-remix\ 0.95.2\" -DPACKAGE_BUGREPORT=\"https://github.com/hyperzlib/Sinsy-Remix\" -DPACKAGE_URL=\"\" -DPACKAGE=\"sinsy-remix\" -DVERSION=\"0.95.2\" -DHAVE_LIBM=1 -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DSIZEOF_CHAR=1 -DSIZEOF_UNSIGNED_CHAR=1 -DSIZEOF_SHORT=2 -DSIZEOF_UNSIGNED_SHORT=2 -DSIZEOF_INT=4 -DSIZEOF_UNSIGNED_INT=4 -DSIZEOF_LONG=4 -DSIZEOF_UNSIGNED_LONG=4 -DSIZEOF_LONG_LONG=8 -DSIZEOF_UNSIGNED_LONG_LONG=8 -DHAVE_VPRINTF=1 -DHAVE_SQRT=1 -DHAVE_STRCHR=1 -DHAVE_STRRCHR=1 -DHAVE_STRSTR=1 -DHAVE_LIBWINMM=1
 DEPDIR = .deps
 ECHO_C = 
 ECHO_N = -n
@@ -144,10 +144,10 @@ ECHO_T =
 EGREP = /bin/grep -E
 EXEEXT = .exe
 GREP = /bin/grep
-HTS_ENGINE_HEADER = hts_engine_API/include/HTS_engine.h
-HTS_ENGINE_HEADER_DIR = hts_engine_API/include
-HTS_ENGINE_LIBRARY = ./libHTSEngine.a
-HTS_ENGINE_LIBRARY_DIR = .
+HTS_ENGINE_HEADER = /c/Users/Administrator/Documents/GitHub/Sinsy-Remix/hts_engine_API/include/HTS_engine.h
+HTS_ENGINE_HEADER_DIR = /c/Users/Administrator/Documents/GitHub/Sinsy-Remix/hts_engine_API/include
+HTS_ENGINE_LIBRARY = /c/Users/Administrator/Documents/GitHub/Sinsy-Remix/hts_engine_API/lib/libHTSEngine.a
+HTS_ENGINE_LIBRARY_DIR = /c/Users/Administrator/Documents/GitHub/Sinsy-Remix/hts_engine_API/lib
 INSTALL = /bin/install -c
 INSTALL_DATA = ${INSTALL} -m 644
 INSTALL_PROGRAM = ${INSTALL}
@@ -160,19 +160,19 @@ LTLIBOBJS =
 MAKEINFO = ${SHELL} /c/Users/Administrator/Documents/GitHub/Sinsy-Remix/config/missing --run makeinfo
 MKDIR_P = /bin/mkdir -p
 OBJEXT = o
-PACKAGE = sinsy
-PACKAGE_BUGREPORT = http://sinsy.sourceforge.net/
-PACKAGE_NAME = sinsy
-PACKAGE_STRING = sinsy 0.95
-PACKAGE_TARNAME = sinsy
+PACKAGE = sinsy-remix
+PACKAGE_BUGREPORT = https://github.com/hyperzlib/Sinsy-Remix
+PACKAGE_NAME = sinsy-remix
+PACKAGE_STRING = sinsy-remix 0.95.2
+PACKAGE_TARNAME = sinsy-remix
 PACKAGE_URL = 
-PACKAGE_VERSION = 0.95
+PACKAGE_VERSION = 0.95.2
 PATH_SEPARATOR = :
 RANLIB = ranlib
 SET_MAKE = 
 SHELL = /bin/sh
 STRIP = 
-VERSION = 0.95
+VERSION = 0.95.2
 abs_builddir = /c/Users/Administrator/Documents/GitHub/Sinsy-Remix/lib
 abs_srcdir = /c/Users/Administrator/Documents/GitHub/Sinsy-Remix/lib
 abs_top_builddir = /c/Users/Administrator/Documents/GitHub/Sinsy-Remix
@@ -234,7 +234,7 @@ AM_CPPFLAGS = -I ../include \
               -I temporary \
               -I util \
               -I xml \
-              -I hts_engine_API/include
+              -I /c/Users/Administrator/Documents/GitHub/Sinsy-Remix/hts_engine_API/include
 
 lib_LIBRARIES = libSinsy.a
 libSinsy_a_SOURCES = Sinsy.cpp \

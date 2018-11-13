@@ -53,9 +53,9 @@ const char* DEFAULT_LANGS = "j";
 void usage()
 {
    std::cout << "The HMM-Based Singing Voice Syntheis System Remix \"Sinsy-R\"" << std::endl;
-   std::cout << "Version 0.95 (http://sinsy.sourceforge.net/)" << std::endl;
-   std::cout << "Copyright (C) 2017-2018 HyperDeep (a.k.a hyperzlib / Quantum)" << std::endl;
-   std::cout << "              2009-2017 Nagoya Institute of Technology" << std::endl;
+   std::cout << "Version 0.95.2 (https://github.com/hyperzlib/Sinsy-Remix)" << std::endl;
+   std::cout << "Copyright (C) 2017-2018 HyperZLink (a.k.a hyperzlib / Quantum)" << std::endl;
+   std::cout << "              2009-2017 Nagoya Institute of Technology (http://hts-engine.sourceforge.net/)" << std::endl;
    std::cout << "All rights reserved." << std::endl;
    std::cout << "" << std::endl;
    std::cout << "The HMM-Based Speech Synthesis Engine \"hts_engine API\"" << std::endl;

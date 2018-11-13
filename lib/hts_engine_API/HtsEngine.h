@@ -44,9 +44,8 @@
 
 #include <vector>
 #include <string>
-#include "util_log.h"
 #include "HTS_engine.h"
-
+#include "util_log.h"
 namespace sinsy
 {
 class LabelStrings;

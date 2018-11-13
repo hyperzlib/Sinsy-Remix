@@ -37,3 +37,8 @@
 *.lab
 *.wav
 *.7z
+*.zip
+
+config.log
+
+autom4te.cache/

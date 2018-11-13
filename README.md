@@ -1,7 +1,26 @@
-===============================================================================
-       The HMM-Based Singing Voice Synthesis System Remix "Sinsy-r" version 0.95
-                           release December 23, 2017
+# Sinsy Remix
 
+[![Build Status](https://travis-ci.org/hyperzlib/Sinsy-Remix.svg?branch=master)](https://travis-ci.org/hyperzlib/Sinsy-Remix)
+
+## Usage:
+```
+    sinsy [ options ] [ infile ]
+  options:                                           [def]
+    -w langs    : languages                          [  j]
+                  j: Japanese                             
+                  c: Chinese                             
+    -x dir      : dictionary directory               [/usr/local/dic]
+    -m htsvoice : HTS voice file                     [N/A]
+    -o file     : filename of output wav audio       [N/A]
+    -l          : output label
+  infile:
+    MusicXML file
+```
+
+## Origin README
+```
+===============================================================================
+       The HMM-Based Singing Voice Synthesis System Remix "Sinsy-r" version 0.95.2
 
 The Sinsy is an HMM-Based Singing Voice Synthesis System. It has been being
 developed by Sinsy working group (see "Who we are" below) and some graduate
@@ -118,3 +137,4 @@ Add Chinese support
 in future this project will support windows
 
 ===============================================================================
+```

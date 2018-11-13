@@ -47,7 +47,7 @@
 #include <stdio.h>
 #include <limits.h>
 #include <iostream> 
-#include <fstream> 
+#include <fstream>
 #include "HtsEngine.h"
 #include "LabelStrings.h"
 #include "SynthConditionImpl.h"
@@ -197,8 +197,17 @@ bool HtsEngine::synthesize(const LabelStrings& label, SynthConditionImpl& condit
    }
 
    int error = 0; // 0: no error 1: unknown error 2: bad alloc
-   if(HTS_Engine_synthesize_from_strings(&engine, (char**) label.getData(), label.size()) != TRUE) {
-      error = 1;
+   // synthesis parameters
+   if(HTS_Engine_generate_state_sequence_from_strings(&engine, (char**)label.getData(), label.size()) != TRUE ||
+	   HTS_Engine_generate_parameter_sequence(&engine) != TRUE ||
+	   HTS_Engine_generate_sample_sequence(&engine) != TRUE){
+	      error = 1;
+   }
+   // TODO: Add pitch modify function
+   
+   // synthesis waveform
+   if(HTS_Engine_generate_sample_wave(&engine) != TRUE){
+	   error = 1;
    }
 
    if (saveFlag) {

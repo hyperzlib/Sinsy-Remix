@@ -1,0 +1,2 @@
+language: cpp
+script: "./configure --with-hts-engine-header-path=$(PWD)/hts_engine_API/include --with-hts-engine-library-path=$(PWD)/hts_engine_API/lib && make"

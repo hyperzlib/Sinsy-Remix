@@ -446,6 +446,8 @@ HTS_Boolean HTS_Engine_generate_parameter_sequence(HTS_Engine * engine);
 
 /* HTS_Engine_generate_sample_sequence: generate sample sequence (3rd synthesis step) */
 HTS_Boolean HTS_Engine_generate_sample_sequence(HTS_Engine * engine);
+/* HTS_Engine_generate_sample_wave: generate sample wave (4th synthesis step) */
+HTS_Boolean HTS_Engine_generate_sample_wave(HTS_Engine * engine);
 
 /* HTS_Engine_save_information: save trace information */
 void HTS_Engine_save_information(HTS_Engine * engine, FILE * fp);
@@ -467,6 +469,10 @@ void HTS_Engine_refresh(HTS_Engine * engine);
 
 /* HTS_Engine_clear: free engine */
 void HTS_Engine_clear(HTS_Engine * engine);
+
+static HTS_Boolean HTS_Engine_synthesize_params(HTS_Engine * engine);
+
+static HTS_Boolean HTS_Engine_synthesize(HTS_Engine * engine);
 
 HTS_ENGINE_H_END;
 

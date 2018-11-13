@@ -167,7 +167,7 @@ target_alias = @target_alias@
 top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-AM_CPPFLAGS = -I @top_srcdir@/include
+AM_CPPFLAGS = -I @top_srcdir@/include -static
 sinsy_SOURCES = sinsy.cpp
 sinsy_LDADD = @top_srcdir@/lib/libSinsy.a \
               @HTS_ENGINE_LIBRARY@
