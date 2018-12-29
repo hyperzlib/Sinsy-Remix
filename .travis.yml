@@ -1,13 +1,6 @@
 language: cpp
 script: "cd hts_engine_API && chmod +x configure && ./configure && make && cd .. && chmod +x configure && ./configure --with-hts-engine-header-path=$(pwd)/hts_engine_API/include --with-hts-engine-library-path=$(pwd)/hts_engine_API/lib && make"
-
-matrix:
-  include:
-    - os: linux
-      addons:
-        apt:
-          sources:
-            - ubuntu-toolchain-r-test
-          packages:
-            - autoconf
-            - automake
+addons:
+  apt:
+    packages:
+      - autoconf
