@@ -9,5 +9,5 @@ matrix:
           sources:
             - ubuntu-toolchain-r-test
           packages:
-            - automake1.11
-            - automake1.15
+            - autoconf
+            - automake
