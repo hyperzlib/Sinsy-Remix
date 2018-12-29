@@ -3,4 +3,11 @@ script: "cd hts_engine_API && chmod +x configure && ./configure && make && cd ..
 addons:
   apt:
     packages:
+      - git clone http://git.sv.gnu.org/r/autoconf.git
+      - cd autoconf
+      - aclocal -I m4
+      - automake -a
       - autoconf
+      - ./configure --prefix=/usr
+      - make
+      - sudo make install
