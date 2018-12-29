@@ -39,6 +39,7 @@
 /* POSSIBILITY OF SUCH DAMAGE.                                       */
 /* ----------------------------------------------------------------- */
 
+#include <iostream>
 #include <stdexcept>
 #include <limits>
 #include <deque>
@@ -58,11 +59,12 @@ namespace
 {
 const std::string SIL_STR = "sil";
 const std::string SEPARATOR = ",";
-const std::string LANGUAGE_INFO = "CHI";
+const std::string LANGUAGE_INFO = "CHN";
 const std::string MACRON = "MACRON";
 const std::string VOWEL_REDUCTION = "VOWEL_REDUCTION";
 const std::string PHONEME_CL = "PHONEME_CL";
 const std::string VOWELS = "VOWELS";
+const std::string CONSONANTS = "CONSONANTS";
 const std::string MULTIBYTE_CHAR_RANGE = "MULTIBYTE_CHAR_RANGE";
 const size_t INVALID_IDX = std::numeric_limits<size_t>::max();
 const std::string DEFAULT_VOWELS = "a,i,v,u,o,e,en,ai,an,ia,ua,er,ii,uo,un,ui,iii,ue,in,ou,ei,ao,iu,ie,van,ian,iao,ang,ing,uan,eng,ong,uai,uang,iang,iong";
@@ -72,7 +74,18 @@ class PhonemeJudge
 {
 public:
    //! constructor
-   PhonemeJudge(const std::string& v, const std::string& b) {
+   PhonemeJudge(const std::string& c, const std::string& v, const std::string& b) {
+      {
+         StringTokenizer st(c, PHONEME_SEPARATOR);
+         size_t sz(st.size());
+         for (size_t i(0); i < sz; ++i) {
+            std::string phoneme(st.at(i));
+            cutBlanks(phoneme);
+            if (!phoneme.empty()) {
+               this->consonants.insert(phoneme);
+            }
+         }
+      }
       {
          StringTokenizer st(v, PHONEME_SEPARATOR);
          size_t sz(st.size());
@@ -102,13 +115,74 @@ public:
 
    //! return whether vowel or not
    const std::string& getType(const std::string& phoneme) const {
-      if (vowels.end() != vowels.find(phoneme)) {
-         return PhonemeInfo::TYPE_VOWEL;
+      if (consonants.end() != consonants.find(phoneme)) {
+         return PhonemeInfo::TYPE_CONSONANT;
       }
       if (breaks.end() != breaks.find(phoneme)) {
          return PhonemeInfo::TYPE_BREAK;
       }
-      return PhonemeInfo::TYPE_CONSONANT;
+      return PhonemeInfo::TYPE_VOWEL;
+   }
+
+   PhonemeTable::PhonemeList *parseLyric(const std::string& phoneme, int *sLen = NULL) const {
+      std::string consonant;
+      std::string vowel;
+      int findId = 0;
+      int matchLen = 0;
+      if(sLen != NULL) *sLen = 0;
+      PhonemeTable::PhonemeList *phonemeList(new PhonemeTable::PhonemeList);
+      if(phoneme.length() == 0){
+         return phonemeList;
+      }
+      for(std::set<std::string>::iterator itr = consonants.begin(); itr != consonants.end(); itr ++){
+         findId = phoneme.find(*itr);
+         if(findId == 0){
+            //找到辅音
+            if((*itr).length() > matchLen){
+               consonant = *itr;
+               matchLen = consonant.length();
+            }
+         }
+      }
+
+      if(matchLen != 0){
+         vowel = phoneme.substr(consonant.length(), vowel.length() - consonant.length());
+         if(vowel.length() > 0){
+            if(consonant == "y" && (vowel[0] == 'v' || vowel[0] == 'u')){
+               vowel[0] = 'v';
+               consonant = "yy";
+            } else if((consonant == "j" || consonant == "q" || consonant == "x") && vowel[0] == 'u'){
+               vowel[0] = 'v';
+            } else if((consonant == "p" || consonant == "f" || consonant == "m") && vowel == "o"){
+               vowel = "uo";
+            } else if((consonant == "ch" || consonant == "sh" || consonant == "zh" || consonant == "r") && vowel == "i"){
+               vowel = "iii";
+            } else if((consonant == "c" || consonant == "s" || consonant == "z") && vowel == "i"){
+               vowel = "ii";
+            }
+         }
+         phonemeList->push_back(consonant);
+         phonemeList->push_back(vowel);
+         if(sLen != NULL) *sLen = consonant.length() + vowel.length();
+      } else {
+         if(phoneme == "i"){
+            phonemeList->push_back("y");
+            phonemeList->push_back(phoneme);
+            if(sLen != NULL) *sLen = phoneme.length() + 1;
+         } else if(phoneme == "v"){
+            phonemeList->push_back("yy");
+            phonemeList->push_back(phoneme);
+            if(sLen != NULL) *sLen = phoneme.length() + 2;
+         } else if(phoneme == "u"){
+            phonemeList->push_back("u");
+            phonemeList->push_back(phoneme);
+            if(sLen != NULL) *sLen = phoneme.length() + 1;
+         } else {
+            phonemeList->push_back(phoneme);
+            if(sLen != NULL) *sLen = phoneme.length();
+         }
+      }
+      return phonemeList;
    }
 
 private:
@@ -117,6 +191,9 @@ private:
 
    //! assignment operator (donot use)
    PhonemeJudge& operator=(const PhonemeJudge&);
+
+   //! consonants
+   std::set<std::string> consonants;
 
    //! vowels
    std::set<std::string> vowels;
@@ -489,12 +566,13 @@ bool CConf::convert(const std::string& enc, ConvertableList::iterator begin, Con
    const std::string clSymbol(config.get(PHONEME_CL));
    const std::string vowelReductionSymbol(config.get(VOWEL_REDUCTION));
    std::string vowels(config.get(VOWELS));
+   std::string consonants(config.get(CONSONANTS));
 
    if (vowels.empty()) {
       vowels = DEFAULT_VOWELS;
    }
 
-   PhonemeJudge phonemeJudge(vowels, clSymbol);
+   PhonemeJudge phonemeJudge(consonants, vowels, clSymbol);
 
    std::vector<InfoAdder*> infoAdderList;
 
@@ -511,6 +589,11 @@ bool CConf::convert(const std::string& enc, ConvertableList::iterator begin, Con
 
 
       infoAdder->setScoreFlag(scoreFlag);
+      
+      //remove rythm radio
+      if(lyric[lyric.length() - 1] > '0' && lyric[lyric.length() - 1] < '5'){
+         lyric = lyric.substr(0, lyric.length() - 1);
+      }
       while (!lyric.empty()) {
          if (!vowelReductionSymbol.empty() && (0 == lyric.compare(0, vowelReductionSymbol.size(), vowelReductionSymbol))) { // vowel reduction
             WARN_MSG("Vowel reduction symbol appeared at the invalid place");
@@ -525,13 +608,22 @@ bool CConf::convert(const std::string& enc, ConvertableList::iterator begin, Con
             }
             infoAdder->setMacronFlag(true);
             lyric.erase(0, macronSymbol.size());
-         } else { // others
+         } else { // other
             PhonemeTable::Result result(phonemeTable.find(lyric));
+            const PhonemeTable::PhonemeList *tList;
+            int sLen = 0;
             if (!result.isValid()) {
-               break;
+               if(lyric.length() == 0){
+                  break;
+               }
+               //parse mode
+               tList = phonemeJudge.parseLyric(lyric, &sLen);
+               lyric.erase(0, sLen);
+            } else {
+               lyric.erase(0, result.getMatchedLength());
+               tList = result.getPhonemeList();
             }
-            lyric.erase(0, result.getMatchedLength());
-            const PhonemeTable::PhonemeList* phonemes(result.getPhonemeList());
+            const PhonemeTable::PhonemeList* phonemes(tList);
 
             //  vowel reduction symbol
             bool vl = false;

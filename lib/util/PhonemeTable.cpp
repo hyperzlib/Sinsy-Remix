@@ -40,6 +40,7 @@
 /* ----------------------------------------------------------------- */
 
 #include <fstream>
+#include <iostream>
 #include "PhonemeTable.h"
 #include "StringTokenizer.h"
 #include "util_log.h"

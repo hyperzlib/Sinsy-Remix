@@ -186,12 +186,8 @@ bool ConfManager::setLanguages(const std::string& languages, const std::string& 
          break;
       }
       case 'c' : { // chinese
-         const std::string TABLE_UTF_8(dirPath + "/chinese.utf_8.table");
-         const std::string CONF_UTF_8(dirPath + "/chinese.utf_8.conf");
-         const std::string TABLE_GBK(dirPath + "/chinese.gbk.table");
-         const std::string CONF_GBK(dirPath + "/chinese.gbk.conf");
-         const std::string TABLE_BIG_5(dirPath + "/chinese.big_5.table");
-         const std::string CONF_BIG_5(dirPath + "/chinese.big_5.conf");
+         const std::string TABLE(dirPath + "/chinese.table");
+         const std::string CONF(dirPath + "/chinese.conf");
          const std::string MACRON_TABLE(dirPath + "/chinese.macron");
 
          uCConf = new CConf(UTF_8_STRS);
@@ -199,8 +195,8 @@ bool ConfManager::setLanguages(const std::string& languages, const std::string& 
          bCConf = new CConf(BIG_5_STRS);
 
          // utf-8
-         if (!uCConf->read(TABLE_UTF_8, CONF_UTF_8, MACRON_TABLE)) {
-            ERR_MSG("Cannot read Chinese table or config or macron file : " << TABLE_UTF_8 << ", " << CONF_UTF_8);
+         if (!uCConf->read(TABLE, CONF, MACRON_TABLE)) {
+            ERR_MSG("Cannot read Chinese table or config or macron file : " << TABLE << ", " << CONF);
             delete uCConf;
             uCConf = NULL;
             return false;
@@ -210,8 +206,8 @@ bool ConfManager::setLanguages(const std::string& languages, const std::string& 
 
 
          // gbk
-         if (!gCConf->read(TABLE_GBK, CONF_GBK, MACRON_TABLE)) {
-            ERR_MSG("Cannot read Chinese table or config or macron file :" << TABLE_GBK << ", " << CONF_GBK);
+         if (!uCConf->read(TABLE, CONF, MACRON_TABLE)) {
+            ERR_MSG("Cannot read Chinese table or config or macron file : " << TABLE << ", " << CONF);
             delete gCConf;
             gCConf = NULL;
             return false;
@@ -220,8 +216,8 @@ bool ConfManager::setLanguages(const std::string& languages, const std::string& 
          deleteList.push_back(gCConf);
 
          // big-5
-         if (!bCConf->read(TABLE_BIG_5, CONF_BIG_5, MACRON_TABLE)) {
-            ERR_MSG("Cannot read Chinese table or config or macron file : " << TABLE_BIG_5 << ", " << CONF_BIG_5);
+         if (!uCConf->read(TABLE, CONF, MACRON_TABLE)) {
+            ERR_MSG("Cannot read Chinese table or config or macron file : " << TABLE << ", " << CONF);
             delete bCConf;
             bCConf = NULL;
             return false;
