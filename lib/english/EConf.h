@@ -39,8 +39,8 @@
 /* POSSIBILITY OF SUCH DAMAGE.                                       */
 /* ----------------------------------------------------------------- */
 
-#ifndef SINSY_C_CONF_H_
-#define SINSY_C_CONF_H_
+#ifndef SINSY_E_CONF_H_
+#define SINSY_E_CONF_H_
 
 #include <string>
 #include <set>
@@ -53,14 +53,14 @@
 namespace sinsy
 {
 
-class CConf : public IConf
+class EConf : public IConf
 {
 public:
    //! constructor
-   CConf(const std::string& enc);
+   EConf(const std::string& enc);
 
    //! destructor
-   virtual ~CConf();
+   virtual ~EConf();
 
    //! read phoneme table and config from files
    bool read(const std::string& table, const std::string& conf, const std::string& macron);
@@ -79,10 +79,10 @@ public:
 
 private:
    //! copy constructor (donot use)
-   CConf(const CConf&);
+   EConf(const EConf&);
 
    //! assignment operator (donot use)
-   CConf& operator=(const CConf&);
+   EConf& operator=(const EConf&);
 
    //! phoneme table
    PhonemeTable phonemeTable;
@@ -104,4 +104,4 @@ private:
 
 };
 
-#endif // SINSY_C_CONF_H_
+#endif // SINSY_E_CONF_H_

@@ -70,7 +70,7 @@ void HTS_GStreamSet_initialize(HTS_GStreamSet * gss)
 }
 
 HTS_Boolean HTS_GStreamSet_synthesis(HTS_GStreamSet * gss, size_t stage, HTS_Boolean use_log_gain, size_t sampling_rate, size_t fperiod, double alpha, double beta, HTS_Boolean * stop, double volume, HTS_Audio * audio){
-	size_t i, j, k;
+	int i, j, k;
 	size_t msd_frame;
 	int t;
 	HTS_Vocoder v;
@@ -103,10 +103,10 @@ HTS_Boolean HTS_GStreamSet_synthesis(HTS_GStreamSet * gss, size_t stage, HTS_Boo
 	gss->total_nsample = fperiod * gss->total_frame;
 	gss->gspeech = (double *) HTS_calloc(gss->total_nsample, sizeof(double));
 	// output progress indexs
-	printf("synthesizeing...\n", nowPerCent);
+	printf("synthesizeing...\n");
 	t = cMax - 6;
 	for (i = 0; i < gss->total_frame && (*stop) == FALSE; i++) {
-		nowPerCent = floor(i * 100 / (gss->total_frame));
+		nowPerCent = (int)floor(i * 100 / (gss->total_frame));
 		if(nowPerCent > 0) nowProgress = (int)((double)nowPerCent * pWidth / 100);
 		else nowProgress = 0;
 		//printf("%d, %d\n", nowProgress, nowPerCent);
@@ -138,6 +138,7 @@ HTS_Boolean HTS_GStreamSet_synthesis(HTS_GStreamSet * gss, size_t stage, HTS_Boo
 	HTS_Vocoder_clear(&v);
 	if (audio)
 		HTS_Audio_flush(audio);
+	return TRUE;
 }
 
 /* HTS_GStreamSet_create: generate speech */

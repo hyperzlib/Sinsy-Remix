@@ -49,7 +49,7 @@
 #include "util_string.h"
 #include "util_converter.h"
 #include "StringTokenizer.h"
-#include "CConf.h"
+#include "EConf.h"
 #include "Deleter.h"
 
 namespace sinsy
@@ -59,7 +59,7 @@ namespace
 {
 const std::string SIL_STR = "sil";
 const std::string SEPARATOR = ",";
-const std::string LANGUAGE_INFO = "CHN";
+const std::string LANGUAGE_INFO = "ENG";
 const std::string MACRON = "MACRON";
 const std::string VOWEL_REDUCTION = "VOWEL_REDUCTION";
 const std::string PHONEME_CL = "PHONEME_CL";
@@ -67,7 +67,6 @@ const std::string VOWELS = "VOWELS";
 const std::string CONSONANTS = "CONSONANTS";
 const std::string MULTIBYTE_CHAR_RANGE = "MULTIBYTE_CHAR_RANGE";
 const size_t INVALID_IDX = std::numeric_limits<size_t>::max();
-const std::string DEFAULT_VOWELS = "a,i,v,u,o,e,en,ai,an,ia,ua,er,ii,uo,un,ui,iii,ue,in,ou,ei,ao,iu,ie,van,ian,iao,ang,ing,uan,eng,ong,uai,uang,iang,iong";
 const std::string PHONEME_SEPARATOR = ",";
 
 class PhonemeJudge
@@ -498,7 +497,7 @@ bool expand(InfoAdder& prevInfoAdder, InfoAdder& infoAdder, const MacronTable& m
 
  @param enc encoding strings (e.g. "utf_8, utf8, utf-8")
  */
-CConf::CConf(const std::string& enc)
+EConf::EConf(const std::string& enc)
 {
    StringTokenizer tokeizer(enc, SEPARATOR);
    size_t sz(tokeizer.size());
@@ -514,7 +513,7 @@ CConf::CConf(const std::string& enc)
 /*!
  destructor
 */
-CConf::~CConf()
+EConf::~EConf()
 {
 }
 
@@ -525,7 +524,7 @@ CConf::~CConf()
  @param conf  config file path
  @return true if success
  */
-bool CConf::read(const std::string& table, const std::string& conf, const std::string& macron)
+bool EConf::read(const std::string& table, const std::string& conf, const std::string& macron)
 {
    if (!phonemeTable.read(table)) {
       ERR_MSG("Cannot read phoneme table file : " << table);
@@ -555,7 +554,7 @@ bool CConf::read(const std::string& table, const std::string& conf, const std::s
 /*!
  convert lyrics to phonemes
 */
-bool CConf::convert(const std::string& enc, ConvertableList::iterator begin, ConvertableList::iterator end) const
+bool EConf::convert(const std::string& enc, ConvertableList::iterator begin, ConvertableList::iterator end) const
 {
    // check encoding
    if (!checkEncoding(enc)) {
@@ -567,10 +566,6 @@ bool CConf::convert(const std::string& enc, ConvertableList::iterator begin, Con
    const std::string vowelReductionSymbol(config.get(VOWEL_REDUCTION));
    std::string vowels(config.get(VOWELS));
    std::string consonants(config.get(CONSONANTS));
-
-   if (vowels.empty()) {
-      vowels = DEFAULT_VOWELS;
-   }
 
    PhonemeJudge phonemeJudge(consonants, vowels, clSymbol);
 
@@ -589,11 +584,6 @@ bool CConf::convert(const std::string& enc, ConvertableList::iterator begin, Con
 
 
       infoAdder->setScoreFlag(scoreFlag);
-      
-      //remove rythm radio
-      if(lyric[lyric.length() - 1] > '0' && lyric[lyric.length() - 1] < '5'){
-         lyric = lyric.substr(0, lyric.length() - 1);
-      }
       while (!lyric.empty()) {
          if (!vowelReductionSymbol.empty() && (0 == lyric.compare(0, vowelReductionSymbol.size(), vowelReductionSymbol))) { // vowel reduction
             WARN_MSG("Vowel reduction symbol appeared at the invalid place");
@@ -608,22 +598,13 @@ bool CConf::convert(const std::string& enc, ConvertableList::iterator begin, Con
             }
             infoAdder->setMacronFlag(true);
             lyric.erase(0, macronSymbol.size());
-         } else { // other
+         } else { // others
             PhonemeTable::Result result(phonemeTable.find(lyric));
-            const PhonemeTable::PhonemeList *tList;
-            int sLen = 0;
             if (!result.isValid()) {
-               if(lyric.length() == 0){
-                  break;
-               }
-               //parse mode
-               tList = phonemeJudge.parseLyric(lyric, &sLen);
-               lyric.erase(0, sLen);
-            } else {
-               lyric.erase(0, result.getMatchedLength());
-               tList = result.getPhonemeList();
+               break;
             }
-            const PhonemeTable::PhonemeList* phonemes(tList);
+            lyric.erase(0, result.getMatchedLength());
+            const PhonemeTable::PhonemeList* phonemes(result.getPhonemeList());
 
             //  vowel reduction symbol
             bool vl = false;
@@ -669,7 +650,7 @@ bool CConf::convert(const std::string& enc, ConvertableList::iterator begin, Con
 
  return sil str
  */
-std::string CConf::getSilStr() const
+std::string EConf::getSilStr() const
 {
    return SIL_STR;
 }
@@ -677,7 +658,7 @@ std::string CConf::getSilStr() const
 /*!
  check encoding
  */
-bool CConf::checkEncoding(const std::string& enc) const
+bool EConf::checkEncoding(const std::string& enc) const
 {
    std::string encoding(enc);
    toLower(encoding);
@@ -688,7 +669,7 @@ bool CConf::checkEncoding(const std::string& enc) const
 /*!
  get multibyte char range
  */
-const MultibyteCharRange& CConf::getMultibyteCharRange() const
+const MultibyteCharRange& EConf::getMultibyteCharRange() const
 {
    return multibyteCharRange;
 }

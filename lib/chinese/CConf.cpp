@@ -67,7 +67,6 @@ const std::string VOWELS = "VOWELS";
 const std::string CONSONANTS = "CONSONANTS";
 const std::string MULTIBYTE_CHAR_RANGE = "MULTIBYTE_CHAR_RANGE";
 const size_t INVALID_IDX = std::numeric_limits<size_t>::max();
-const std::string DEFAULT_VOWELS = "a,i,v,u,o,e,en,ai,an,ia,ua,er,ii,uo,un,ui,iii,ue,in,ou,ei,ao,iu,ie,van,ian,iao,ang,ing,uan,eng,ong,uai,uang,iang,iong";
 const std::string PHONEME_SEPARATOR = ",";
 
 class PhonemeJudge
@@ -567,10 +566,6 @@ bool CConf::convert(const std::string& enc, ConvertableList::iterator begin, Con
    const std::string vowelReductionSymbol(config.get(VOWEL_REDUCTION));
    std::string vowels(config.get(VOWELS));
    std::string consonants(config.get(CONSONANTS));
-
-   if (vowels.empty()) {
-      vowels = DEFAULT_VOWELS;
-   }
 
    PhonemeJudge phonemeJudge(consonants, vowels, clSymbol);
 

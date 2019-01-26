@@ -70,6 +70,7 @@ void usage()
    std::cout << "    -w langs    : languages                          [  j]" << std::endl;
    std::cout << "                  j: Japanese                             " << std::endl;
    std::cout << "                  c: Chinese                              " << std::endl;
+   std::cout << "                  e: English                              " << std::endl;
    std::cout << "    -x dir      : dictionary directory               [/usr/local/dic]" << std::endl;
    std::cout << "    -m htsvoice : HTS voice file                     [N/A]" << std::endl;
    std::cout << "    -o file     : filename of output                 [N/A]" << std::endl;

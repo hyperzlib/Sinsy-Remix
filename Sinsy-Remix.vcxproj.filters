@@ -186,6 +186,9 @@
     <ClCompile Include="bin\sinsy-console.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="lib\english\EConf.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="hts_engine_api\include\HTS_engine.h">
@@ -387,6 +390,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="lib\xml\xml_tags.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\english\EConf.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -49,6 +49,7 @@
 #include "util_converter.h"
 #include "JConf.h"
 #include "CConf.h"
+#include "EConf.h"
 
 namespace sinsy
 {
@@ -66,7 +67,9 @@ const std::string CODE_SEPARATOR = "|";
 /*!
  constructor
  */
-ConfManager::ConfManager() : uJConf(NULL), sJConf(NULL), eJConf(NULL), jConfs(NULL),uCConf(NULL),gCConf(NULL),bCConf(NULL),cConfs(NULL)
+ConfManager::ConfManager() : uJConf(NULL), sJConf(NULL), eJConf(NULL),
+	uCConf(NULL), uEConf(NULL),
+	confs(NULL)
 {
 }
 
@@ -90,11 +93,9 @@ void ConfManager::clear()
    uJConf = NULL;
    sJConf = NULL;
    eJConf = NULL;
-   jConfs = NULL;
+   confs = NULL;
    uCConf = NULL;
-   gCConf = NULL;
-   bCConf = NULL;
-   cConfs = NULL;
+   uEConf = NULL;
    confList.clear();
 }
 
@@ -103,29 +104,14 @@ void ConfManager::clear()
 
  add Japanese conf
  */
-void ConfManager::addJConf(IConf* conf)
+void ConfManager::addConf(IConf* conf)
 {
-   if (!jConfs) {
-      jConfs = new ConfGroup();
-      deleteList.push_back(jConfs);
-      confList.push_back(jConfs);
+   if (!confs) {
+      confs = new ConfGroup();
+      deleteList.push_back(confs);
+      confList.push_back(confs);
    }
-   jConfs->add(conf);
-}
-
-/*!
- @internal
-
- add Chinese conf
- */
-void ConfManager::addCConf(IConf* conf)
-{
-   if (!cConfs) {
-      cConfs = new ConfGroup();
-      deleteList.push_back(cConfs);
-      confList.push_back(cConfs);
-   }
-   cConfs->add(conf);
+   confs->add(conf);
 }
 
 /*!
@@ -159,7 +145,7 @@ bool ConfManager::setLanguages(const std::string& languages, const std::string& 
             uJConf = NULL;
             return false;
          }
-         addJConf(uJConf);
+         addConf(uJConf);
          deleteList.push_back(uJConf);
 
 
@@ -170,7 +156,7 @@ bool ConfManager::setLanguages(const std::string& languages, const std::string& 
             sJConf = NULL;
             return false;
          }
-         addJConf(sJConf);
+         addConf(sJConf);
          deleteList.push_back(sJConf);
 
          // euc-jp
@@ -180,7 +166,7 @@ bool ConfManager::setLanguages(const std::string& languages, const std::string& 
             eJConf = NULL;
             return false;
          }
-         addJConf(eJConf);
+         addConf(eJConf);
          deleteList.push_back(eJConf);
 
          break;
@@ -191,8 +177,6 @@ bool ConfManager::setLanguages(const std::string& languages, const std::string& 
          const std::string MACRON_TABLE(dirPath + "/chinese.macron");
 
          uCConf = new CConf(UTF_8_STRS);
-         gCConf = new CConf(GBK_STRS);
-         bCConf = new CConf(BIG_5_STRS);
 
          // utf-8
          if (!uCConf->read(TABLE, CONF, MACRON_TABLE)) {
@@ -201,32 +185,28 @@ bool ConfManager::setLanguages(const std::string& languages, const std::string& 
             uCConf = NULL;
             return false;
          }
-         addCConf(uCConf);
+         addConf(uCConf);
          deleteList.push_back(uCConf);
-
-
-         // gbk
-         if (!uCConf->read(TABLE, CONF, MACRON_TABLE)) {
-            ERR_MSG("Cannot read Chinese table or config or macron file : " << TABLE << ", " << CONF);
-            delete gCConf;
-            gCConf = NULL;
-            return false;
-         }
-         addCConf(gCConf);
-         deleteList.push_back(gCConf);
-
-         // big-5
-         if (!uCConf->read(TABLE, CONF, MACRON_TABLE)) {
-            ERR_MSG("Cannot read Chinese table or config or macron file : " << TABLE << ", " << CONF);
-            delete bCConf;
-            bCConf = NULL;
-            return false;
-         }
-         addCConf(bCConf);
-         deleteList.push_back(bCConf);
-
          break;
       }
+	  case 'e': { // english
+		  const std::string TABLE(dirPath + "/english.table");
+		  const std::string CONF(dirPath + "/english.conf");
+		  const std::string MACRON_TABLE(dirPath + "/english.macron");
+
+		  uEConf = new EConf(UTF_8_STRS);
+
+		  // utf-8
+		  if (!uEConf->read(TABLE, CONF, MACRON_TABLE)) {
+			  ERR_MSG("Cannot read English table or config or macron file : " << TABLE << ", " << CONF);
+			  delete uEConf;
+			  uEConf = NULL;
+			  return false;
+		  }
+		  addConf(uEConf);
+		  deleteList.push_back(uEConf);
+		  break;
+	  }
       default :
          ERR_MSG("Unknown language flag : " << lang);
          return false;

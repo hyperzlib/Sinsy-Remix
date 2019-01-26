@@ -1395,6 +1395,7 @@ void LabelMaker::outputLabel(ILabelOutput& output, bool monophoneFlag, int overw
     NoteLabeler::List::const_iterator prevSItr;
     SyllableLabeler::List::const_iterator prevPItr;
     bool hasPrev = false;
+	bool isSetPre = false;
 	// Note
 	NoteList::const_iterator nItrBegin(noteList.begin());
 	NoteList::const_iterator nItrEnd(noteList.end());
@@ -1411,6 +1412,7 @@ void LabelMaker::outputLabel(ILabelOutput& output, bool monophoneFlag, int overw
 			SyllableLabeler::List::const_iterator pItrBegin((*sItr)->childBegin());
 			SyllableLabeler::List::const_iterator pItrEnd((*sItr)->childEnd());
 			i = 0;
+			isSetPre = false;
 			SyllableLabeler::List::const_iterator pItr(pItrBegin);
 			for (; pItrEnd != pItr; ++ pItr) {
 				double noteTime = (*nItr)->getLength().getTime();
@@ -1430,8 +1432,8 @@ void LabelMaker::outputLabel(ILabelOutput& output, bool monophoneFlag, int overw
 						 *  元音：开始 结尾
 						 */
 						//开始进行时间修正
-						if ((sItrBegin == sItr) && (pItrBegin == pItr) && (sItrEnd == sItr + 1) && (pItrEnd == pItr + 1)){
-						    //单音的情况（单元音）
+						if ((sItrBegin == sItr) && (pItrBegin == pItr) && (pItr[0]->getPhonemeType() == PhonemeInfo::TYPE_VOWEL || pItr[0]->getPhonemeType() == PhonemeInfo::TYPE_SILENT || pItr[0]->getPhonemeType() == PhonemeInfo::TYPE_PAUSE)){
+						    //元音开头的情况
 							//对上一个音进行结尾
 						    if(hasPrev){
 							    prevLabelData->setEndTime(time);
@@ -1441,26 +1443,23 @@ void LabelMaker::outputLabel(ILabelOutput& output, bool monophoneFlag, int overw
 						    beginTime = time;
 							time += noteTime;
 						} else {
-						    //多音的情况（正常音）
-    						if (1 == timeFlag) {
+						    //辅音开头的情况
+    						if (timeFlag == 1) {
     							labelData->setBeginTime(beginTime);
     						}
     						
-    						if ((sItrBegin == sItr) && (pItrBegin == pItr)){
-    						    //辅音
-								//std::cout << "consonant" << std::endl;
-    							labelData->setEndTime(time);
-    						} else if (1 == timeFlag) {
+    						if (1 == timeFlag) {
     							labelData->setEndTime(beginTime);
     						}
     						
-    						if ((sItrBegin == prevSItr) && (pItrBegin == prevPItr)) {
-    						    //元音
-								//std::cout << "vowel" << std::endl;
+    						if (pItr[0]->getPhonemeType() == PhonemeInfo::TYPE_VOWEL && !isSetPre) {
+    						    //首个元音的情况
+								prevLabelData->setEndTime(time);
     							labelData->setBeginTime(time);
     							beginTime = time;
     							time += noteTime;
-    						} else if (1 == timeFlag) {
+								isSetPre = true;
+    						} else if (timeFlag == 1) {
     							labelData->setBeginTime(beginTime);
     						}
 						}
