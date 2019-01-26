@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>15.0</VCProjectVersion>
+    <ProjectGuid>{102E6762-E60E-4E96-A3F3-CF3BD8E33104}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>hts_engine_API\include;hts_engine_API\lib;lib\xml;lib\util;lib\temporary;lib\score;lib\hts_engine_API;lib\label;lib\japanese;lib\english;lib\converter;lib\chinese;lib;include;$(IncludePath)</IncludePath>
+    <LibraryPath>lib;hts_engine_API\lib;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+	<IncludePath>hts_engine_API\include;hts_engine_API\lib;lib\xml;lib\util;lib\temporary;lib\score;lib\hts_engine_API;lib\label;lib\japanese;lib\english;lib\converter;lib\chinese;lib;include;$(IncludePath)</IncludePath>
+    <LibraryPath>lib;hts_engine_API\lib;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <Optimization>Disabled</Optimization>
+    </ClCompile>
+    <Link>
+      <TargetMachine>MachineX86</TargetMachine>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+      <AdditionalDependencies>winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <TargetMachine>MachineX86</TargetMachine>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="bin\sinsy-console.cpp" />
+    <ClCompile Include="hts_engine_api\lib\HTS_audio.c" />
+    <ClCompile Include="hts_engine_api\lib\HTS_engine.c" />
+    <ClCompile Include="hts_engine_api\lib\HTS_gstream.c" />
+    <ClCompile Include="hts_engine_api\lib\HTS_label.c" />
+    <ClCompile Include="hts_engine_api\lib\HTS_misc.c" />
+    <ClCompile Include="hts_engine_api\lib\HTS_model.c" />
+    <ClCompile Include="hts_engine_api\lib\HTS_pstream.c" />
+    <ClCompile Include="hts_engine_api\lib\HTS_sstream.c" />
+    <ClCompile Include="hts_engine_api\lib\HTS_vocoder.c" />
+    <ClCompile Include="lib\chinese\CConf.cpp" />
+    <ClCompile Include="lib\converter\ConfGroup.cpp" />
+    <ClCompile Include="lib\converter\ConfManager.cpp" />
+    <ClCompile Include="lib\converter\Converter.cpp" />
+    <ClCompile Include="lib\converter\PhonemeInfo.cpp" />
+    <ClCompile Include="lib\converter\UnknownConf.cpp" />
+    <ClCompile Include="lib\converter\util_converter.cpp" />
+    <ClCompile Include="lib\hts_engine_api\HtsEngine.cpp" />
+    <ClCompile Include="lib\hts_engine_api\SynthConditionImpl.cpp" />
+    <ClCompile Include="lib\japanese\JConf.cpp" />
+    <ClCompile Include="lib\label\LabelData.cpp" />
+    <ClCompile Include="lib\label\LabelMaker.cpp" />
+    <ClCompile Include="lib\label\LabelMeasure.cpp" />
+    <ClCompile Include="lib\label\LabelPosition.cpp" />
+    <ClCompile Include="lib\label\LabelStream.cpp" />
+    <ClCompile Include="lib\label\LabelStrings.cpp" />
+    <ClCompile Include="lib\label\NoteGroup.cpp" />
+    <ClCompile Include="lib\label\NoteLabeler.cpp" />
+    <ClCompile Include="lib\label\PhonemeLabeler.cpp" />
+    <ClCompile Include="lib\label\SyllableLabeler.cpp" />
+    <ClCompile Include="lib\score\Beat.cpp" />
+    <ClCompile Include="lib\score\Dynamics.cpp" />
+    <ClCompile Include="lib\score\Key.cpp" />
+    <ClCompile Include="lib\score\Mode.cpp" />
+    <ClCompile Include="lib\score\Note.cpp" />
+    <ClCompile Include="lib\score\Pitch.cpp" />
+    <ClCompile Include="lib\score\ScorePosition.cpp" />
+    <ClCompile Include="lib\score\Slur.cpp" />
+    <ClCompile Include="lib\score\Syllabic.cpp" />
+    <ClCompile Include="lib\score\util_score.cpp" />
+    <ClCompile Include="lib\Sinsy.cpp" />
+    <ClCompile Include="lib\temporary\ScoreDoctor.cpp" />
+    <ClCompile Include="lib\temporary\TempScore.cpp" />
+    <ClCompile Include="lib\util\Configurations.cpp" />
+    <ClCompile Include="lib\util\DiphthongConverter.cpp" />
+    <ClCompile Include="lib\util\InputFile.cpp" />
+    <ClCompile Include="lib\util\IStringable.cpp" />
+    <ClCompile Include="lib\util\MacronTable.cpp" />
+    <ClCompile Include="lib\util\MultibyteCharRange.cpp" />
+    <ClCompile Include="lib\util\OutputFile.cpp" />
+    <ClCompile Include="lib\util\PhonemeTable.cpp" />
+    <ClCompile Include="lib\util\StringTokenizer.cpp" />
+    <ClCompile Include="lib\util\util_string.cpp" />
+    <ClCompile Include="lib\xml\XmlData.cpp" />
+    <ClCompile Include="lib\xml\XmlParser.cpp" />
+    <ClCompile Include="lib\xml\XmlReader.cpp" />
+    <ClCompile Include="lib\xml\XmlWriter.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="hts_engine_api\include\HTS_engine.h" />
+    <ClInclude Include="hts_engine_api\lib\HTS_hidden.h" />
+    <ClInclude Include="include\HTS_engine.h" />
+    <ClInclude Include="include\sinsy.h" />
+    <ClInclude Include="lib\chinese\CConf.h" />
+    <ClInclude Include="lib\converter\ConfGroup.h" />
+    <ClInclude Include="lib\converter\ConfManager.h" />
+    <ClInclude Include="lib\converter\Converter.h" />
+    <ClInclude Include="lib\converter\IConf.h" />
+    <ClInclude Include="lib\converter\IConvertable.h" />
+    <ClInclude Include="lib\converter\PhonemeInfo.h" />
+    <ClInclude Include="lib\converter\UnknownConf.h" />
+    <ClInclude Include="lib\converter\util_converter.h" />
+    <ClInclude Include="lib\hts_engine_api\HtsEngine.h" />
+    <ClInclude Include="lib\hts_engine_api\SynthConditionImpl.h" />
+    <ClInclude Include="lib\japanese\JConf.h" />
+    <ClInclude Include="lib\label\ILabelOutput.h" />
+    <ClInclude Include="lib\label\INoteLabel.h" />
+    <ClInclude Include="lib\label\IPhonemeLabel.h" />
+    <ClInclude Include="lib\label\ISyllableLabel.h" />
+    <ClInclude Include="lib\label\LabelData.h" />
+    <ClInclude Include="lib\label\LabelMaker.h" />
+    <ClInclude Include="lib\label\LabelMeasure.h" />
+    <ClInclude Include="lib\label\LabelPosition.h" />
+    <ClInclude Include="lib\label\LabelStream.h" />
+    <ClInclude Include="lib\label\LabelStrings.h" />
+    <ClInclude Include="lib\label\NoteGroup.h" />
+    <ClInclude Include="lib\label\NoteLabeler.h" />
+    <ClInclude Include="lib\label\PhonemeLabeler.h" />
+    <ClInclude Include="lib\label\SyllableLabeler.h" />
+    <ClInclude Include="lib\score\Beat.h" />
+    <ClInclude Include="lib\score\Dynamics.h" />
+    <ClInclude Include="lib\score\IScoreWritable.h" />
+    <ClInclude Include="lib\score\IScoreWriter.h" />
+    <ClInclude Include="lib\score\Key.h" />
+    <ClInclude Include="lib\score\Mode.h" />
+    <ClInclude Include="lib\score\Note.h" />
+    <ClInclude Include="lib\score\Pitch.h" />
+    <ClInclude Include="lib\score\ScorePosition.h" />
+    <ClInclude Include="lib\score\Slur.h" />
+    <ClInclude Include="lib\score\Syllabic.h" />
+    <ClInclude Include="lib\score\util_score.h" />
+    <ClInclude Include="lib\temporary\ScoreDoctor.h" />
+    <ClInclude Include="lib\temporary\TempScore.h" />
+    <ClInclude Include="lib\util\Configurations.h" />
+    <ClInclude Include="lib\util\Deleter.h" />
+    <ClInclude Include="lib\util\DiphthongConverter.h" />
+    <ClInclude Include="lib\util\ForEachAdapter.h" />
+    <ClInclude Include="lib\util\InputFile.h" />
+    <ClInclude Include="lib\util\IReadableStream.h" />
+    <ClInclude Include="lib\util\IStringable.h" />
+    <ClInclude Include="lib\util\IWritableStream.h" />
+    <ClInclude Include="lib\util\MacronTable.h" />
+    <ClInclude Include="lib\util\MultibyteCharRange.h" />
+    <ClInclude Include="lib\util\OutputFile.h" />
+    <ClInclude Include="lib\util\PhonemeTable.h" />
+    <ClInclude Include="lib\util\StreamException.h" />
+    <ClInclude Include="lib\util\StringTokenizer.h" />
+    <ClInclude Include="lib\util\util_log.h" />
+    <ClInclude Include="lib\util\util_string.h" />
+    <ClInclude Include="lib\util\util_types.h" />
+    <ClInclude Include="lib\util\WritableStrStream.h" />
+    <ClInclude Include="lib\xml\XmlData.h" />
+    <ClInclude Include="lib\xml\XmlParser.h" />
+    <ClInclude Include="lib\xml\XmlReader.h" />
+    <ClInclude Include="lib\xml\XmlWriter.h" />
+    <ClInclude Include="lib\xml\xml_tags.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

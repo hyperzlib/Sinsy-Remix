@@ -42,3 +42,6 @@
 config.log
 
 autom4te.cache/
+Debug/
+Release/
+v15/

@@ -1,0 +1,393 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="hts_engine_api\lib\HTS_audio.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="hts_engine_api\lib\HTS_engine.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="hts_engine_api\lib\HTS_gstream.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="hts_engine_api\lib\HTS_label.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="hts_engine_api\lib\HTS_misc.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="hts_engine_api\lib\HTS_model.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="hts_engine_api\lib\HTS_pstream.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="hts_engine_api\lib\HTS_sstream.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="hts_engine_api\lib\HTS_vocoder.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\Sinsy.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\chinese\CConf.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\converter\ConfGroup.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\converter\ConfManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\converter\Converter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\converter\PhonemeInfo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\converter\UnknownConf.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\converter\util_converter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\hts_engine_api\HtsEngine.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\hts_engine_api\SynthConditionImpl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\japanese\JConf.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\label\LabelData.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\label\LabelMaker.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\label\LabelMeasure.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\label\LabelPosition.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\label\LabelStream.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\label\LabelStrings.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\label\NoteGroup.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\label\NoteLabeler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\label\PhonemeLabeler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\label\SyllableLabeler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\score\Beat.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\score\Dynamics.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\score\Key.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\score\Mode.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\score\Note.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\score\Pitch.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\score\ScorePosition.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\score\Slur.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\score\Syllabic.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\score\util_score.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\temporary\ScoreDoctor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\temporary\TempScore.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\util\Configurations.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\util\DiphthongConverter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\util\InputFile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\util\IStringable.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\util\MacronTable.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\util\MultibyteCharRange.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\util\OutputFile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\util\PhonemeTable.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\util\StringTokenizer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\util\util_string.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\xml\XmlData.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\xml\XmlParser.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\xml\XmlReader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\xml\XmlWriter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bin\sinsy-console.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="hts_engine_api\include\HTS_engine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="hts_engine_api\lib\HTS_hidden.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\HTS_engine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sinsy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\chinese\CConf.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\converter\ConfGroup.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\converter\ConfManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\converter\Converter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\converter\IConf.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\converter\IConvertable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\converter\PhonemeInfo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\converter\UnknownConf.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\converter\util_converter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\hts_engine_api\HtsEngine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\hts_engine_api\SynthConditionImpl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\japanese\JConf.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\label\ILabelOutput.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\label\INoteLabel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\label\IPhonemeLabel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\label\ISyllableLabel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\label\LabelData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\label\LabelMaker.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\label\LabelMeasure.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\label\LabelPosition.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\label\LabelStream.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\label\LabelStrings.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\label\NoteGroup.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\label\NoteLabeler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\label\PhonemeLabeler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\label\SyllableLabeler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\score\Beat.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\score\Dynamics.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\score\IScoreWritable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\score\IScoreWriter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\score\Key.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\score\Mode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\score\Note.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\score\Pitch.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\score\ScorePosition.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\score\Slur.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\score\Syllabic.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\score\util_score.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\temporary\ScoreDoctor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\temporary\TempScore.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\util\Configurations.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\util\Deleter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\util\DiphthongConverter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\util\ForEachAdapter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\util\InputFile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\util\IReadableStream.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\util\IStringable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\util\IWritableStream.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\util\MacronTable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\util\MultibyteCharRange.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\util\OutputFile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\util\PhonemeTable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\util\StreamException.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\util\StringTokenizer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\util\util_log.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\util\util_string.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\util\util_types.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\util\WritableStrStream.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\xml\XmlData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\xml\XmlParser.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\xml\XmlReader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\xml\XmlWriter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\xml\xml_tags.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
