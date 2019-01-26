@@ -3,6 +3,7 @@ AM_CPPFLAGS = -I @top_srcdir@/include \
               -I hts_engine_API \
               -I japanese \
               -I chinese \
+			  -I english \
               -I label \
               -I score \
               -I temporary \
@@ -35,6 +36,8 @@ libSinsy_a_SOURCES = Sinsy.cpp \
                      ./japanese/JConf.h \
                      ./chinese/CConf.cpp \
                      ./chinese/CConf.h \
+					 ./english/EConf.cpp \
+                     ./english/EConf.h \
                      ./label/ILabelOutput.h \
                      ./label/INoteLabel.h \
                      ./label/IPhonemeLabel.h \
